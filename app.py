@@ -50,7 +50,7 @@ def clean_negatives(dfc):
     dfc = dfc[~dfc.ss.isin(stopwords)]
     return(dfc)
 
-st.title('Negative Substring analysis')
+st.title('Negative Substring analysis - hello nawees')
 st.write('Please upload the Search query report for analysis')
 st.write('Note: this should include the fields: Customer Search Term, Spend, 14 Day Total Sales, Campaign Name')
 
