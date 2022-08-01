@@ -52,7 +52,7 @@ def clean_negatives(dfc):
 
 st.title('Negative Substring analysis')
 st.write('Please upload the Search query report for analysis')
-st.text('Note: this should include the fields: Customer Search Term, Spend, 14 Day Total Sales, Campaign Name')
+st.write('Note: this should include the fields: Customer Search Term, Spend, 14 Day Total Sales, Campaign Name')
 
 # Upload data to analyse
 uploaded_file = st.file_uploader("Upload Search Query File")
