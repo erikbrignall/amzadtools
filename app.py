@@ -12,8 +12,9 @@ import streamlit as st
 
 fields = ["Match Type","Customer Search Term","Clicks","Spend","14 Day Total Sales","Campaign Name","14 Day Total Orders (#)"]
 
-st.title('KW Data Summary')
-st.sidebar.title('Search Query report analysis:')
+st.title('Search Query Report Recommendations')
+st.header('KW Data Summary:')
+st.sidebar.title('Upload file for analysis:')
 st.sidebar.write('Please upload the Search query report for analysis')
 st.sidebar.write('Note: this should include the fields: Customer Search Term, Spend, 14 Day Total Sales, Campaign Name, 14 Day Total Orders (\#)')
 
@@ -53,7 +54,7 @@ if uploaded_file is not None and pw == "pass123":
     df['Brand'].replace("","Other", inplace=True)
     
     #get brand level summary table
-    st.write("Brand performance summary table")
+    st.header("Brand performance summary table")
     dfBrand = pd.pivot_table(df,index=['Brand'],values=['Cost','Revenue','Orders','Clicks'], aggfunc=np.sum)
     dfBrand.reset_index(inplace=True)
     dfBrand['ROAS'] = dfBrand['Revenue']/dfBrand['Cost']
@@ -61,7 +62,7 @@ if uploaded_file is not None and pw == "pass123":
     dfBrand['CVR'] = dfBrand['Orders']/dfBrand['Clicks']
     st.dataframe(dfBrand)
     
-    st.write("Brand/ Non Brand performance summary table")
+    st.header("Brand/ Non Brand performance summary table")
     # Brand non brand summary
     dfBNonB = pd.pivot_table(df,index=['BrandKW'],values=['Cost','Revenue','Orders','Clicks'], aggfunc=np.sum)
     dfBNonB.reset_index(inplace=True)
@@ -71,7 +72,7 @@ if uploaded_file is not None and pw == "pass123":
     st.dataframe(dfBNonB)
     
     # Match type level performance
-    st.write("Match Type performance summary table")
+    st.header("Match Type performance summary table")
     dfBNonB = pd.pivot_table(df,index=['Match Type'],values=['Cost','Revenue','Orders','Clicks'], aggfunc=np.sum)
     dfBNonB.reset_index(inplace=True)
     dfBNonB['ROAS'] = dfBNonB['Revenue']/dfBNonB['Cost']
