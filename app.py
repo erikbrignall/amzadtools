@@ -27,7 +27,7 @@ if uploaded_file is not None and pw == "pass123":
     #read csv
     df=pd.read_csv(uploaded_file)
     df2 = df.copy()
-    st.write("csv successfully uploaded")
+    st.sidebar.write("csv successfully uploaded")
     df = df[fields]
     
     cols = ['Match Type','Query','Clicks','Cost','Revenue','Campaign Name','Orders']
@@ -54,7 +54,7 @@ if uploaded_file is not None and pw == "pass123":
     df['Brand'].replace("","Other", inplace=True)
     
     #get brand level summary table
-    st.header("Brand performance summary table")
+    st.subheader("Brand performance summary table")
     dfBrand = pd.pivot_table(df,index=['Brand'],values=['Cost','Revenue','Orders','Clicks'], aggfunc=np.sum)
     dfBrand.reset_index(inplace=True)
     dfBrand['ROAS'] = dfBrand['Revenue']/dfBrand['Cost']
@@ -62,7 +62,7 @@ if uploaded_file is not None and pw == "pass123":
     dfBrand['CVR'] = dfBrand['Orders']/dfBrand['Clicks']
     st.dataframe(dfBrand)
     
-    st.header("Brand/ Non Brand performance summary table")
+    st.subheader("Brand/ Non Brand performance summary table")
     # Brand non brand summary
     dfBNonB = pd.pivot_table(df,index=['BrandKW'],values=['Cost','Revenue','Orders','Clicks'], aggfunc=np.sum)
     dfBNonB.reset_index(inplace=True)
@@ -72,7 +72,7 @@ if uploaded_file is not None and pw == "pass123":
     st.dataframe(dfBNonB)
     
     # Match type level performance
-    st.header("Match Type performance summary table")
+    st.subheader("Match Type performance summary table")
     dfBNonB = pd.pivot_table(df,index=['Match Type'],values=['Cost','Revenue','Orders','Clicks'], aggfunc=np.sum)
     dfBNonB.reset_index(inplace=True)
     dfBNonB['ROAS'] = dfBNonB['Revenue']/dfBNonB['Cost']
@@ -122,7 +122,7 @@ def clean_negatives(dfc):
     dfc = dfc[~dfc.ss.isin(stopwords)]
     return(dfc)
 
-st.title('Negative Substring analysis')
+st.header('Negative Substring analysis')
 #st.write('Please upload the Search query report for analysis')
 #st.text('Note: this should include the fields: Customer Search Term, Spend, 14 Day Total Sales, Campaign Name')
 
