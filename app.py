@@ -12,7 +12,7 @@ import streamlit as st
 
 fields = ["Match Type","Customer Search Term","Clicks","Spend","14 Day Total Sales","Campaign Name","14 Day Total Orders (#)"]
 
-st.title('Search Query Report Recommendations')
+st.title('Search Query Report Analyser')
 st.header('KW Data Summary:')
 st.sidebar.title('Upload file for analysis:')
 st.sidebar.write('Please upload the Search query report (xlsx) for analysis')
@@ -40,12 +40,15 @@ if uploaded_file is not None and pw == "pass123":
     total_cost = df['cost'].sum().astype(int)
     total_queries = len(df)
     total_campaigns = df['campaign'].nunique()
+    total_roas = total_rev/total_cost
 
-    st.metric(label="Total Revenue", value=total_rev)
-    st.write(total_rev)
-    st.write(total_cost)
-    st.write(total_queries)
-    st.write(total_campaigns)
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric(label="Total Revenue", value=total_rev)
+    col2.metric(label="Total Spend", value=total_cost)
+    col3.write(label="Total Queries", value=total_queries)
+    col4.write(label="Total ROAS", value=total_roas)
+    #st.write(total_queries)
+    #st.write(total_campaigns)
 
     desc = {"Veet": "Veet","Vanish":"Vanish","Finish": "Finish", "Calgon": "Calgon","Harpic": "Harpic", "Air Wick": "Air Wick", "Botanica": "Botanica", "Cillit" : "Cillit Bang", "Mr Sheen": "Mr Sheen", "Durex": "Durex", "Scholl": "Scholl"}
 
