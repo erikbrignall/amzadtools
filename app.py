@@ -64,6 +64,10 @@ if uploaded_file is not None and pw == "pass123":
     df["Brand"] = df["campaign"].map(lambda x: check_kw(x))
     df['Brand'].replace("","Other", inplace=True)
 
+    brands = 'finish|vanish|air wick|calgon|airwick|cillit|durex|sagrotan|botanica|scholl|sheen|veet|harpic'
+    df.loc[df['query'].str.contains(brands),'brandkw'] = "Branded"
+    df['brandkw'].fillna("Non Branded", inplace=True)
+
     #get brand level summary table
     st.subheader("Brand performance summary table")
     dfBrand = pd.pivot_table(df,index=['Brand'],values=['cost','revenue','conversions','clicks'], aggfunc=np.sum)
@@ -71,11 +75,16 @@ if uploaded_file is not None and pw == "pass123":
     dfBrand['ROAS'] = dfBrand['revenue']/dfBrand['cost']
     dfBrand['AOV'] = dfBrand['revenue']/dfBrand['conversions']
     dfBrand['CVR'] = dfBrand['conversions']/dfBrand['clicks']
+    dfBrand = dfBrand.sort_values(by='cost', ascending=False)
     st.dataframe(dfBrand)
     
     st.subheader("Brand/ Non Brand performance summary table")
     # Brand non brand summary
-    
+    dfBNonB = pd.pivot_table(df,index=['brandkw'],values=['cost','revenue','conversions','clicks'], aggfunc=np.sum)
+    dfBNonB.reset_index(inplace=True)
+    dfBNonB['ROAS'] = dfBNonB['revenue']/dfBNonB['cost']
+    dfBNonB['AOV'] = dfBNonB['revenue']/dfBNonB['conversions']
+    dfBNonB['CVR'] = dfBNonB['conversions']/dfBNonB['clicks']
     #st.dataframe(dfBNonB)
     
     # Match type level performance
