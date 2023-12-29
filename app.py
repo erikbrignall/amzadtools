@@ -41,11 +41,24 @@ if uploaded_file is not None and pw == "pass123":
     total_queries = len(df)
     total_campaigns = df['campaign'].nunique()
 
+    st.metric(label="Total Revenue", value=total_rev)
     st.write(total_rev)
     st.write(total_cost)
     st.write(total_queries)
     st.write(total_campaigns)
-     
+
+    desc = {"Veet": "Veet","Vanish":"Vanish","Finish": "Finish", "Calgon": "Calgon","Harpic": "Harpic", "Air Wick": "Air Wick", "Botanica": "Botanica", "Cillit" : "Cillit Bang", "Mr Sheen": "Mr Sheen", "Durex": "Durex", "Scholl": "Scholl"}
+
+    # add brand column
+    def check_kw(x):
+        for key in desc:
+            if key.lower() in x.lower():
+                return desc[key]
+        return ''
+    
+    df["Brand"] = df["campaign"].map(lambda x: check_kw(x))
+    df['Brand'].replace("","Other", inplace=True)
+
     #get brand level summary table
     st.subheader("Brand performance summary table")
     dfBrand = pd.pivot_table(df,index=['Brand'],values=['cost','revenue','conversions','clicks'], aggfunc=np.sum)
