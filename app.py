@@ -42,11 +42,12 @@ if uploaded_file is not None and pw == "pass123":
     total_campaigns = df['campaign'].nunique()
     total_roas = total_rev/total_cost
 
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4, col5 = st.columns(5)
     col1.metric(label="Total Revenue", value=total_rev)
     col2.metric(label="Total Spend", value=total_cost)
-    col3.write(label="Total Queries", value=total_queries)
-    col4.write(label="Total ROAS", value=total_roas)
+    col3.metric(label="Total Queries", value=total_queries)
+    col4.metric(label="Total ROAS", value=total_roas)
+    col5.metric(label="Total Campaigns", value=total_campaigns)
     #st.write(total_queries)
     #st.write(total_campaigns)
 
