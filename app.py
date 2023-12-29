@@ -7,7 +7,6 @@ Created on Mon Aug  1 18:29:51 2022
 
 import pandas as pd #load the pandas library with alias pd
 import numpy as np # load numpy for NaN substition
-import openpyxl
 #import json
 import streamlit as st
 
