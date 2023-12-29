@@ -85,7 +85,7 @@ if uploaded_file is not None and pw == "pass123":
     dfBNonB['ROAS'] = dfBNonB['revenue']/dfBNonB['cost']
     dfBNonB['AOV'] = dfBNonB['revenue']/dfBNonB['conversions']
     dfBNonB['CVR'] = dfBNonB['conversions']/dfBNonB['clicks']
-    #st.dataframe(dfBNonB)
+    st.dataframe(dfBNonB)
     
     # Match type level performance
     #st.subheader("Match Type performance summary table")
