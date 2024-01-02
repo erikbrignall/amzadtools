@@ -88,9 +88,13 @@ if uploaded_file is not None and pw == "pass123":
     st.dataframe(dfBNonB)
     
     # Match type level performance
-    #st.subheader("Match Type performance summary table")
-    
-    #st.dataframe(dfBNonB)
+    st.subheader("Match Type performance summary table")
+    dfMT = pd.pivot_table(df,index=['match_type'],values=['cost','revenue','conversions','clicks'], aggfunc=np.sum)
+    dfMT.reset_index(inplace=True)
+    dfMT['ROAS'] = dfMT['revenue']/dfMT['cost']
+    dfMT['AOV'] = dfMT['revenue']/dfMT['conversions']
+    dfMT['CVR'] = dfMT['conversions']/dfMT['clicks']
+    st.dataframe(dfMT)
     
 
 
