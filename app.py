@@ -98,7 +98,7 @@ if uploaded_file is not None and pw == "pass123":
     col1, col2 = st.columns(2)
     #st.bar_chart(dfMT, x="match_type", y=["cost","revenue"])
     col1.bar_chart(dfMT, x="match_type", y=["cost","revenue"])
-    col2.bar_chart(dfMT, x="match_type", y=["conversions","clicks"])
+    col2.bar_chart(dfMT, x="match_type", y=["CVR"])
     st.dataframe(dfMT)
 
     ## Create a grouped bar chart
