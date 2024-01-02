@@ -95,7 +95,10 @@ if uploaded_file is not None and pw == "pass123":
     dfMT['ROAS'] = dfMT['revenue']/dfMT['cost']
     dfMT['AOV'] = dfMT['revenue']/dfMT['conversions']
     dfMT['CVR'] = dfMT['conversions']/dfMT['clicks']
-    st.bar_chart(dfMT, x="match_type", y=["cost","revenue"])
+    col1, col2 = st.columns(2)
+    #st.bar_chart(dfMT, x="match_type", y=["cost","revenue"])
+    col1.bar_chart(dfMT, x="match_type", y=["cost","revenue"])
+    col1.bar_chart(dfMT, x="match_type", y=["conversions","clicks"])
     st.dataframe(dfMT)
 
     ## Create a grouped bar chart
