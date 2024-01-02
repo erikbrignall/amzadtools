@@ -94,6 +94,7 @@ if uploaded_file is not None and pw == "pass123":
     dfMT['ROAS'] = dfMT['revenue']/dfMT['cost']
     dfMT['AOV'] = dfMT['revenue']/dfMT['conversions']
     dfMT['CVR'] = dfMT['conversions']/dfMT['clicks']
+    st.bar_chart(dfMT, x="match_type", y="cost", color="revenue")
     st.dataframe(dfMT)
     
 
