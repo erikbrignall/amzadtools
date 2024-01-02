@@ -45,7 +45,8 @@ if uploaded_file is not None and pw == "pass123":
     total_roas = total_roas.round(2)
 
     col1, col2, col3, col4, col5 = st.columns(5)
-    total_rev = f"£{total_rev:,.2f}"
+    #total_rev = f"£{total_rev:,.2f}"
+    total_rev = f"{total_rev:,}"
     col1.metric(label="Total Revenue", value=total_rev)
     col2.metric(label="Total Spend", value=total_cost)
     col3.metric(label="Total Queries", value=total_queries)
