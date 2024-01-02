@@ -36,6 +36,7 @@ if uploaded_file is not None and pw == "pass123":
     df.columns = cols
     df = df.sort_values(by=['cost'], ascending=False)
 
+    st.header('Summary Stats:')
     # OVERALL SUMMARY STATS
     total_rev = df['revenue'].sum().astype(int)
     total_cost = df['cost'].sum().astype(int)
@@ -47,6 +48,8 @@ if uploaded_file is not None and pw == "pass123":
     col1, col2, col3, col4, col5 = st.columns(5)
     #total_rev = f"£{total_rev:,.2f}"
     total_rev = f"{total_rev:,}"
+    total_queries = f"{total_queries:,}"
+    total_cost = f"{total_cost:,}"
     col1.metric(label="Total Revenue", value=total_rev)
     col2.metric(label="Total Spend", value=total_cost)
     col3.metric(label="Total Queries", value=total_queries)
@@ -71,6 +74,7 @@ if uploaded_file is not None and pw == "pass123":
     df.loc[df['query'].str.contains(brands),'brandkw'] = "Branded"
     df['brandkw'].fillna("Non Branded", inplace=True)
 
+    st.header('Performance Overview:')
     #get brand level summary table
     st.subheader("Brand performance summary table")
     dfBrand = pd.pivot_table(df,index=['Brand'],values=['cost','revenue','conversions','clicks'], aggfunc=np.sum)
