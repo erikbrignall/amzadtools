@@ -38,6 +38,7 @@ if uploaded_file is not None and pw == "pass123":
 
     # OVERALL SUMMARY STATS
     total_rev = df['revenue'].sum().astype(int)
+    total_rev = f"£{total_rev:,.2f}"
     total_cost = df['cost'].sum().astype(int)
     total_queries = len(df)
     total_campaigns = df['campaign'].nunique()
