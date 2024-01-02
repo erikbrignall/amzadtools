@@ -77,6 +77,15 @@ if uploaded_file is not None and pw == "pass123":
     dfBrand['AOV'] = dfBrand['revenue']/dfBrand['conversions']
     dfBrand['CVR'] = dfBrand['conversions']/dfBrand['clicks']
     dfBrand = dfBrand.sort_values(by='cost', ascending=False)
+    dfBrand = dfBrand.style.format(
+        {
+            "cost": lambda x : '{:,.1f} £'.format(x),
+            "revenue": lambda x : '{:,.1f} £'.format(x),
+        },
+        thousands=' ',
+        decimal=',',
+        )
+    
     st.dataframe(dfBrand)
     
     st.subheader("Brand/ Non Brand performance summary table")
