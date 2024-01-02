@@ -95,18 +95,18 @@ if uploaded_file is not None and pw == "pass123":
     dfMT['ROAS'] = dfMT['revenue']/dfMT['cost']
     dfMT['AOV'] = dfMT['revenue']/dfMT['conversions']
     dfMT['CVR'] = dfMT['conversions']/dfMT['clicks']
-    #st.bar_chart(dfMT, x="match_type", y=["cost","revenue"])
-    #st.dataframe(dfMT)
+    st.bar_chart(dfMT, x="match_type", y=["cost","revenue"])
+    st.dataframe(dfMT)
 
-    # Create a grouped bar chart
-    chart = alt.Chart(dfMT).mark_bar().encode(
-        x=alt.X('match_type:N', axis=alt.Axis(title='Match-Type')),
-        y=alt.Y('cost:Q', axis=alt.Axis(title='cost')),
-        color='revenue:N',
-        column='revenue:N')
+    ## Create a grouped bar chart
+    #chart = alt.Chart(dfMT).mark_bar().encode(
+    #    x=alt.X('match_type:N', axis=alt.Axis(title='Match-Type')),
+    #    y=alt.Y('cost:Q', axis=alt.Axis(title='cost')),
+    #    color='revenue:N',
+    #    column='revenue:N')
 
-    # Display the chart in Streamlit
-    st.altair_chart(chart, use_container_width=True)
+    ## Display the chart in Streamlit
+    #st.altair_chart(chart, use_container_width=True)
     
 
 
