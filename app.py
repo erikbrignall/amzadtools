@@ -79,12 +79,9 @@ if uploaded_file is not None and pw == "pass123":
     dfBrand = dfBrand.sort_values(by='cost', ascending=False)
     dfBrand = dfBrand.style.format(
         {
-            "cost": lambda x : '{:,.1f} £'.format(x),
-            "revenue": lambda x : '{:,.1f} £'.format(x),
-        },
-        thousands=' ',
-        decimal=',',
-        )
+            "cost": lambda x : '£{:,.1f}'.format(x),
+            "revenue": lambda x : '£{:,.1f}'.format(x),
+        })
     
     st.dataframe(dfBrand)
     
