@@ -29,8 +29,8 @@ if uploaded_file is not None and pw == "pass123":
     df=pd.read_excel(uploaded_file)
     st.sidebar.write("csv successfully uploaded")
     # PRE-PROCESSING DATA
-    df = df[['Portfolio name','Campaign Name','Ad Group Name','Targeting','Match Type','Customer Search Term','Impressions'\
-    ,'Clicks','Spend','14 Day Total Sales ','14 Day Total Orders (#)','14 Day Advertised ASIN Units (#)','14 Day Brand Halo ASIN Sales ']]
+    df = df[['Portfolio','Campaign Name','Adgroup','Keyword Text','Match','Query','Impression'\
+    ,'Click','Spend','Sales 14d','Order 14d','Sale Units','CPC']]
 
     cols = ['portfolio','campaign','adgroup','keyword','match_type','query','impressions','clicks','cost','revenue','conversions','units_same','revenue_halo']
     df.columns = cols
