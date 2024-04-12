@@ -65,7 +65,8 @@ if uploaded_file is not None and pw == "pass123":
             if key.lower() in x.lower():
                 return desc[key]
         return ''
-    
+
+    df = df.iloc[:-1]
     df["Brand"] = df["campaign"].map(lambda x: check_kw(x))
     df['Brand'].replace("","Other", inplace=True)
 
