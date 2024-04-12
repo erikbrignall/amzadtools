@@ -27,10 +27,9 @@ uploaded_file = st.sidebar.file_uploader("Upload Search Query File")
 if uploaded_file is not None and pw == "pass123":
     #read csv
     df=pd.read_excel(uploaded_file)
-    st.sidebar.write("csv successfully uploaded")
+    st.sidebar.write("file successfully uploaded")
     # PRE-PROCESSING DATA
-    df = df[['Portfolio','Campaign Name','Adgroup','Keyword Text','Match','Query','Impression'\
-    ,'Click','Spend','Sales 14d','Order 14d','Sale Units','CPC']]
+    df = df[['Portfolio','Campaign Name','Adgroup','Keyword Text','Match','Query','Impression','Click','Spend','Sales 14d','Order 14d','Sale Units','CPC']]
 
     cols = ['portfolio','campaign','adgroup','keyword','match_type','query','impressions','clicks','cost','revenue','conversions','units_same','revenue_halo']
     df.columns = cols
